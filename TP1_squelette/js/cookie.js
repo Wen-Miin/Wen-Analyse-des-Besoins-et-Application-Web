@@ -63,7 +63,7 @@ class Cookie {
   static swapCookies(c1, c2) {
     console.log("SWAP C1 C2");
     // On échange leurs images et types
-
+    /*this.swapCookies(c1.selectionnee(),c2.selectionnee());*/
     // et on remet les désélectionne
   }
 

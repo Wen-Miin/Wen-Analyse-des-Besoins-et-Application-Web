@@ -4,8 +4,8 @@ class Grille {
   nbLignes;
   nbColonnes;
   tabCookies = [];
-  //tabCookiesCliquees = [];
-  nbCookiesDifferents = 6;
+  tabCookiesCliquees = [];
+  //nbCookiesDifferents = 6;
 
   constructor(l, c) {
     this.nbLignes = l;
@@ -24,14 +24,14 @@ class Grille {
     let caseDivs = document.querySelectorAll("#grille div");
 
     caseDivs.forEach((div, index) => {
-      let ligne = Math.floor(index/this.nbColonnes);
-      let colonne = index%this.nbColonnes;
+      let ligne = Math.floor(index / this.nbColonnes);
+      let colonne = index % this.nbColonnes;
       //let type = this.type;
 
       /*console.log("On remplit le div index=" + index + " l=" + ligne + " col=" + colonne);*/
-      
+
       let img = this.tabCookies[ligne][colonne].htmlImage;
-      
+
       // on affiche l'image dans le div pour la faire apparaitre à l'écran.
       div.appendChild(img);
 
@@ -64,6 +64,8 @@ class Grille {
           this.tabCookiesCliquees[0].deselectionnee();
           this.tabCookiesCliquees[1].deselectionnee();
           this.tabCookiesCliquees = [];
+
+          //this.tabCookies.push();
         }
       };
 
@@ -120,10 +122,14 @@ class Grille {
         imgDrop.classList.remove("grilleDragOver");
 
         this.tabCookiesCliquees = [];
+
       };
       div.append(img);
     });
+    this.chute;
   }
+  
+  //swap si les cookies ont 1 de distance
   swapPossible() {
     let cookie1 = this.tabCookiesCliquees[0];
     let cookie2 = this.tabCookiesCliquees[1];
@@ -235,6 +241,7 @@ class Grille {
   }
 
   detecteAlignementColonne(colonne) {
+    let tabSupp = [];
     // on veut afficher les cookies situées sur une colonne donnée
     for (let ligne = 0; ligne <= this.nbLignes - 3; ligne++) {
       //console.log("On va examiner la case " + ligne + " " + colonne);
@@ -250,6 +257,26 @@ class Grille {
 
         this.nbAlignements++;
       }
+    }
+  }
+
+  //méthode pour faire chuter les cookies en colonnes
+  chute() {
+    let tabUndefined = [];
+    for (let i = 0; i < this.nbLignes; i++) {
+      for (let j = 0; j < this.nbColonnes; j++) {
+       
+        tabUndefined = this.tabCookies.indexOf(undefined);
+        for(let h = 0; h <tabUndefined.length;h++){
+          //supprimer les cases vides
+          this.tabCookies.splice(tabUndefined[h],1);
+        }
+        //remplir le tableau à la fin
+        this.remplirTableauDeCookies;
+        //ajouter les éléments à la fin du tableau
+        this.tabCookies[i][j].push;
+      }
+
     }
   }
 }
